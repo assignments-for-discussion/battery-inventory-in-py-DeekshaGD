@@ -1,4 +1,4 @@
-def calculate_state(present_capacity,rated_capacity=120):
+def calculate_state(present_capacity,rated_capacity):
   return 100*(present_capacity / rated_capacity)
 
 def count_batteries_by_health(present_capacities):
