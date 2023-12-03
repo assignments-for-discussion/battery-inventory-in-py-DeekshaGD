@@ -1,10 +1,17 @@
+def calculate_state(present_capacity,rated_capacity=120):
+  return 100*(present_capacity / rated_capacity)
 
 def count_batteries_by_health(present_capacities):
-  return {
-    "healthy": 0,
-    "exchange": 0,
-    "failed": 0
-  }
+  counts={"healthy":0,"exchange":0,"failed":0}
+  for present_capacity in present_capacities:
+    state=calculate_state(present_capacity,rated_capacity)
+    if state>88:
+      counts["healthy"]+=1
+    elif state>67:
+      counts["exchange"]+=1
+    else:
+      counts["failed"]+=1
+  return counts
 
 
 def test_bucketing_by_health():
