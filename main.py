@@ -1,8 +1,10 @@
- def count_batteries_by_health(present_capacities):
+def calculate_state(present_capacity,rated_capacity=120):
+ return (present_capacity / rated_capacity)*100
+
+def count_batteries_by_health(present_capacities):
   counts={"healthy":0,"exchange":0,"failed":0}
-  rated_capacity=120
-  for p in present_capacities:
-    SoH=(p / rated_capacity)*100
+  for present_capacity in present_capacities:
+    SoH=calculate_state(present_capacity)
     if SoH>80 and SoH<=100:
       counts["healthy"]+=1
     elif SoH>62 and SoH<=80:
